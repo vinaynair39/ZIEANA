@@ -8,8 +8,6 @@ from pydub import AudioSegment
 from pydub.playback import play
 
 
-
-
 class Speech(object):
 
     def __init__(self, user, password,launch_phrase="mirror mirror", debugger_enabled=False):
@@ -93,12 +91,8 @@ if __name__ == '__main__':
     test = Speech('c0acb244-5242-467c-b48f-2d8448b8fc9c', 'Neru55aYWhz5')
     recognizer, audio = test.listen_to_voice()
     speech = test.google_speech_recognition(recognizer, audio)
-    text = speech + ' was said by ziana. period!'
+    text = speech + ' hello my name is banana can you tell me the difference between soundcloud and YouTube was said by ziana. period!'
 
     test.text_to_speech(text)
-
-
-
-
 
 
