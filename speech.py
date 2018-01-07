@@ -6,7 +6,12 @@ from os.path import join
 from watson_developer_cloud import TextToSpeechV1
 from pydub import AudioSegment
 from pydub.playback import play
-
+from gtts import gTTS
+from conversation import Conversation
+import urllib.request
+import urllib.parse
+import re
+import webbrowser
 
 class Speech(object):
 
@@ -28,7 +33,7 @@ class Speech(object):
         with m as source:   # open the microphone and start recording, source is the microphone(m's) instance
             r.adjust_for_ambient_noise(source)
             r.dynamic_energy_threshold = True
-            r.pause_threshold = 1.4    # minimum length of silence (in sec) that will be considered as the end of phrase
+            r.pause_threshold = 0.8   # minimum length of silence (in sec) that will be considered as the end of phrase
             self.__debugger_microphone(enable=True)
             print("I'm listening")
             audio = r.listen(source)
@@ -86,13 +91,45 @@ class Speech(object):
         play(voice)
         os.remove(path)
 
+    def synthesize_text(self, text):
+        tts = gTTS(text=text, lang='en')
+        print(tts)
+        tts.save("tmp.mp3")
+        song = AudioSegment.from_mp3("tmp.mp3")
+        play(song)
+        os.remove("tmp.mp3")
+
 
 if __name__ == '__main__':
-    test = Speech('c0acb244-5242-467c-b48f-2d8448b8fc9c', 'Neru55aYWhz5')
-    recognizer, audio = test.listen_to_voice()
-    speech = test.google_speech_recognition(recognizer, audio)
-    text = speech + ' hello my name is banana can you tell me the difference between soundcloud and YouTube was said by ziana. period!'
+    speech_obj = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX')
+    recognizer, audio = speech_obj.listen_to_voice()
+    text = speech_obj.google_speech_recognition(recognizer, audio)
+    conversation_obj = Conversation()
+    intent, respo, response = conversation_obj.convo(text)
+    speech_obj.synthesize_text(respo)
+    # speech_obj.text_to_speech(f'<speak>{respo}</speak>')
 
-    test.text_to_speech(text)
+    if intent == 'play_music':
+        recognizer, audio = speech_obj.listen_to_voice()
+        text = speech_obj.google_speech_recognition(recognizer, audio)
+        intent, respo, response2 = conversation_obj.convoV2(text, response)
+        speech_obj.synthesize_text(respo)
+        recognizer, audio = speech_obj.listen_to_voice()
+        text = speech_obj.google_speech_recognition(recognizer, audio)
+
+
+        query_string = "search_query=" + text
+        html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
+        search_results = re.findall(r'href=\"/watch\?v=(.{11})', html_content.read().decode())
+        resonse = "http://www.youtube.com/watch?v=" + search_results[0]
+        webbrowser.open(resonse)
+
+        # speech_obj.text_to_speech(f'<speak>"<express-as type="GoodNews">{respo}</express-as></speak>')
+        # path = join(os.getcwd(), 'mt.mp3')
+        # song = AudioSegment.from_mp3(path)
+        # play(song)
+        # speech_obj.synthesize_text(respo)
+
+
 
 
