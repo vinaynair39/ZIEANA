@@ -7,7 +7,7 @@ from watson_developer_cloud import TextToSpeechV1
 from pydub import AudioSegment
 from pydub.playback import play
 from gtts import gTTS
-from conversation import Conversation
+from conver
 import urllib.request
 import urllib.parse
 import re
@@ -102,33 +102,12 @@ class Speech(object):
 
 if __name__ == '__main__':
     speech_obj = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX')
+    conversation_obj = Conversation()
     recognizer, audio = speech_obj.listen_to_voice()
     text = speech_obj.google_speech_recognition(recognizer, audio)
-    conversation_obj = Conversation()
-    intent, respo, response = conversation_obj.convo(text)
-    speech_obj.synthesize_text(respo)
-    # speech_obj.text_to_speech(f'<speak>{respo}</speak>')
+    conversation_obj.con
+    speech_obj.text_to_speech(f'<speak>"<express-as type="GoodNews">{}</express-as></speak>')
 
-    if intent == 'play_music':
-        recognizer, audio = speech_obj.listen_to_voice()
-        text = speech_obj.google_speech_recognition(recognizer, audio)
-        intent, respo, response2 = conversation_obj.convoV2(text, response)
-        speech_obj.synthesize_text(respo)
-        recognizer, audio = speech_obj.listen_to_voice()
-        text = speech_obj.google_speech_recognition(recognizer, audio)
-
-
-        query_string = "search_query=" + text
-        html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
-        search_results = re.findall(r'href=\"/watch\?v=(.{11})', html_content.read().decode())
-        resonse = "http://www.youtube.com/watch?v=" + search_results[0]
-        webbrowser.open(resonse)
-
-        # speech_obj.text_to_speech(f'<speak>"<express-as type="GoodNews">{respo}</express-as></speak>')
-        # path = join(os.getcwd(), 'mt.mp3')
-        # song = AudioSegment.from_mp3(path)
-        # play(song)
-        # speech_obj.synthesize_text(respo)
 
 
 

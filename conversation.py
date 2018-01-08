@@ -17,19 +17,17 @@ class Conversation:
             workspace_id='e380de5b-7f5b-4287-beb4-3843f449de30',
             input={
                 'text': text
-            })
-
-        intent = response['intents'][0]['intent']
+            },
+            context={'user_name': 'vinay'}
+        )
+        # intent = response['intents'][0]['intent']
         resp_text = response['output']['text'][0]
-        print(intent)
-        data = json.dumps(response, indent=2)
-        print(data)
-        return intent, resp_text, response
-        # data = json.dumps(response, indent=2)
-        # # print(data)
+        return resp_text, response
 
     def convoV2(self, text, response):
-        data =response['context']
+        data = response['context']
+        data['user_name'] = 'vinay'
+        print(data)
         conversation = ConversationV1(password=self.password, username=self.username, version='2017-05-26')
 
         response = conversation.message(
@@ -37,21 +35,18 @@ class Conversation:
             input={
                 'text': text
             },
-            context=data
+            context=data,
+
         )
-
-        intent = response['intents'][0]['intent']
+        # intent = response['intents'][0]['intent']
         resp_text = response['output']['text'][0]
-        print(intent)
-        data = json.dumps(response, indent=2)
-        print(data)
-        return intent, resp_text
-        # data = json.dumps(response, indent=2)
-        # # print(data)
-
+        return resp_text
 
 
 if __name__ == '__main__':
     test = Conversation()
-    test.convo('play me some music')
+    data, resp = test.convo('book me a table')
+    print(data)
+    data = test.convoV2(input(), resp)
+    print(data)
 
