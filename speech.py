@@ -7,7 +7,7 @@ from watson_developer_cloud import TextToSpeechV1
 from pydub import AudioSegment
 from pydub.playback import play
 from gtts import gTTS
-from conver
+from conversation import Conversation
 import urllib.request
 import urllib.parse
 import re
@@ -40,6 +40,10 @@ class Speech(object):
 
         self.__debugger_microphone(enable=True)
         print("Found audio")
+        if audio is None:
+            print("I'm listening")
+            audio = r.listen(source)
+
         return r, audio
 
     def google_speech_recognition(self, recognizer, audio):
@@ -52,9 +56,7 @@ class Speech(object):
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
         if speech is None:
-            no_text = "Couldn't receive any vocals. Please try again!"
-            print(no_text)
-            self.text_to_speech(no_text)
+            self.listen_to_voice()
         else:
             return speech
 
@@ -93,7 +95,6 @@ class Speech(object):
 
     def synthesize_text(self, text):
         tts = gTTS(text=text, lang='en')
-        print(tts)
         tts.save("tmp.mp3")
         song = AudioSegment.from_mp3("tmp.mp3")
         play(song)
@@ -102,11 +103,24 @@ class Speech(object):
 
 if __name__ == '__main__':
     speech_obj = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX')
-    conversation_obj = Conversation()
-    recognizer, audio = speech_obj.listen_to_voice()
-    text = speech_obj.google_speech_recognition(recognizer, audio)
-    conversation_obj.con
-    speech_obj.text_to_speech(f'<speak>"<express-as type="GoodNews">{}</express-as></speak>')
+    conversation_obj = Conversation('vinay')
+    while True:
+        try:
+            recognizer, audio = speech_obj.listen_to_voice()
+            text = speech_obj.google_speech_recognition(recognizer, audio)
+            intent, output = conversation_obj.convo(text)
+            speech_obj.synthesize_text(output)
+
+        except ValueError:
+            print('I am sorry! some problem has occured. would you mind asking me some another query?')
+            speech_obj.synthesize_text('I am sorry! some problem has occured. would you mind asking me some another query?')
+
+        except requests.exceptions.HTTPError:
+            print('I am sorry! some problem has occured. would you mind asking me some another query?')
+            speech_obj.synthesize_text('I am sorry! some problem has occured. would you mind asking me some another query?')
+
+
+
 
 
 
