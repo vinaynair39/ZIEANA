@@ -15,7 +15,7 @@ import webbrowser
 
 class Speech(object):
 
-    def __init__(self, user, password,launch_phrase="mirror mirror", debugger_enabled=False):
+    def __init__(self, user, password, launch_phrase="mirror mirror", debugger_enabled=False):
 
         self.user = user
         self.password = password

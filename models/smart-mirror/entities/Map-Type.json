@@ -1,0 +1,46 @@
+{
+  "data" : {
+    "lookups" : [
+      "free-text",
+      "keywords"
+    ],
+    "name" : "Map-Type",
+    "lang" : "en",
+    "exotic" : false,
+    "id" : "Map-Type",
+    "values" : [
+      {
+        "value" : "hybrid",
+        "expressions" : [
+          "hybrid"
+        ]
+      },
+      {
+        "value" : "normal",
+        "expressions" : [
+          "normal"
+        ]
+      },
+      {
+        "value" : "roadmap",
+        "expressions" : [
+          "roadmap"
+        ]
+      },
+      {
+        "value" : "satellite",
+        "expressions" : [
+          "satellite"
+        ]
+      },
+      {
+        "value" : "terrain",
+        "expressions" : [
+          "terrain"
+        ]
+      }
+    ],
+    "doc" : "User-defined entity",
+    "builtin" : false
+  }
+}

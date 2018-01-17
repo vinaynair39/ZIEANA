@@ -1,0 +1,57 @@
+{
+  "data" : {
+    "lookups" : [
+      "trait"
+    ],
+    "name" : "Intent",
+    "lang" : "en",
+    "exotic" : false,
+    "id" : "Intent",
+    "values" : [
+      {
+        "value" : "appearance"
+      },
+      {
+        "value" : "appreciation"
+      },
+      {
+        "value" : "greeting"
+      },
+      {
+        "value" : "holidays"
+      },
+      {
+        "value" : "insult"
+      },
+      {
+        "value" : "joke"
+      },
+      {
+        "value" : "maps"
+      },
+      {
+        "value" : "meaning of life"
+      },
+      {
+        "value" : "news"
+      },
+      {
+        "value" : "personal status"
+      },
+      {
+        "value" : "snow white"
+      },
+      {
+        "value" : "user name"
+      },
+      {
+        "value" : "user status"
+      },
+      {
+        "value" : "weather"
+      }
+    ],
+    "doc" : "User-defined entity",
+    "builtin" : false
+  }
+}

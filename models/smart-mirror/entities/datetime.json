@@ -1,0 +1,13 @@
+{
+  "data" : {
+    "lookups" : [
+      "free-text"
+    ],
+    "name" : "datetime",
+    "lang" : "en",
+    "exotic" : false,
+    "id" : "datetime",
+    "doc" : "Date and time, like `tomorrow at 6pm`",
+    "builtin" : true
+  }
+}

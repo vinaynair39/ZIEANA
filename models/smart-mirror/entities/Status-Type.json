@@ -1,0 +1,37 @@
+{
+  "data" : {
+    "lookups" : [
+      "free-text",
+      "keywords"
+    ],
+    "name" : "Status-Type",
+    "lang" : "en",
+    "exotic" : false,
+    "id" : "Status-Type",
+    "values" : [
+      {
+        "value" : "hair",
+        "expressions" : [
+          "hair",
+          "up do"
+        ]
+      },
+      {
+        "value" : "makeup",
+        "expressions" : [
+          "makeup"
+        ]
+      },
+      {
+        "value" : "outfit",
+        "expressions" : [
+          "attire",
+          "clothes",
+          "outfit"
+        ]
+      }
+    ],
+    "doc" : "User-defined entity",
+    "builtin" : false
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "data" : {
+    "lookups" : [
+      "free-text",
+      "keywords",
+      "trait"
+    ],
+    "name" : "Weather-Type",
+    "lang" : "en",
+    "exotic" : false,
+    "id" : "Weather-Type",
+    "values" : [
+      {
+        "value" : "3 day",
+        "expressions" : [
+          "3 day",
+          "three day"
+        ]
+      },
+      {
+        "value" : "7 day",
+        "expressions" : [
+          "7 day",
+          "seven day"
+        ]
+      },
+      {
+        "value" : "current"
+      },
+      {
+        "value" : "today"
+      },
+      {
+        "value" : "tomorrow"
+      }
+    ],
+    "doc" : "User-defined entity",
+    "builtin" : false
+  }
+}

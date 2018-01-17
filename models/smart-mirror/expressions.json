@@ -1,0 +1,1230 @@
+{
+  "data" : [
+    {
+      "text" : "Do I look fresh as f***",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        }
+      ]
+    },
+    {
+      "text" : "How do I look?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        }
+      ]
+    },
+    {
+      "text" : "I want to hear a joke",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"joke\""
+        }
+      ]
+    },
+    {
+      "text" : "Show me a map",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        }
+      ]
+    },
+    {
+      "text" : "any holidays coming up",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "any upcoming holidays",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "anything on my calendar",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "anything on the calendar",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "can you get today's weather",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"current\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-24T00:00:00.000-07:00\"",
+          "start" : 12,
+          "end" : 17
+        }
+      ]
+    },
+    {
+      "text" : "can you get tomorrow's forecast",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"tomorrow\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-25T00:00:00.000-07:00\"",
+          "start" : 12,
+          "end" : 20
+        }
+      ]
+    },
+    {
+      "text" : "do I have anything coming up soon",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "do I have anything to do this week?",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-12T00:00:00.000-07:00\"",
+          "start" : 25,
+          "end" : 34
+        }
+      ]
+    },
+    {
+      "text" : "do my clothes look good?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"clothes\"",
+          "start" : 6,
+          "end" : 13
+        }
+      ]
+    },
+    {
+      "text" : "do my clothes look nice?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"outfit\"",
+          "start" : 6,
+          "end" : 13
+        }
+      ]
+    },
+    {
+      "text" : "does my hair look good",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"hair\"",
+          "start" : 8,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "does my outfit look nice?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"outfit\"",
+          "start" : 8,
+          "end" : 14
+        }
+      ]
+    },
+    {
+      "text" : "f*** you",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"insult\""
+        }
+      ]
+    },
+    {
+      "text" : "good afternoon",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "{:from \"2016-09-18T12:00:00.000-07:00\", :to \"2016-09-18T19:00:00.000-07:00\"}",
+          "start" : 5,
+          "end" : 14
+        }
+      ]
+    },
+    {
+      "text" : "good evening",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "{:from \"2016-09-18T18:00:00.000-07:00\", :to \"2016-09-19T00:00:00.000-07:00\"}",
+          "start" : 5,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "good morning",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "{:from \"2016-09-19T04:00:00.000-07:00\", :to \"2016-09-19T12:00:00.000-07:00\"}",
+          "start" : 5,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "hello",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        }
+      ]
+    },
+    {
+      "text" : "hey",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        }
+      ]
+    },
+    {
+      "text" : "hi",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        }
+      ]
+    },
+    {
+      "text" : "how are you doing",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"personal status\""
+        }
+      ]
+    },
+    {
+      "text" : "how are you?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"personal status\""
+        }
+      ]
+    },
+    {
+      "text" : "how do I look",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        }
+      ]
+    },
+    {
+      "text" : "how do my clothes look",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"clothes\"",
+          "start" : 10,
+          "end" : 17
+        }
+      ]
+    },
+    {
+      "text" : "how does my makeup look",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"makeup\"",
+          "start" : 12,
+          "end" : 18
+        }
+      ]
+    },
+    {
+      "text" : "how does my outfit look",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"outfit\"",
+          "start" : 12,
+          "end" : 18
+        }
+      ]
+    },
+    {
+      "text" : "how does my up do look?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user status\""
+        },
+        {
+          "entity" : "Status-Type",
+          "value" : "\"hair\"",
+          "start" : 12,
+          "end" : 17
+        }
+      ]
+    },
+    {
+      "text" : "how's the weather like this week",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"7 day\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-26T00:00:00.000-07:00\"",
+          "start" : 23,
+          "end" : 32
+        }
+      ]
+    },
+    {
+      "text" : "hows the weather look today?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 22,
+          "end" : 27
+        }
+      ]
+    },
+    {
+      "text" : "mirror mirror on the wall who's the fairest of them all",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"snow white\""
+        }
+      ]
+    },
+    {
+      "text" : "reveal yourself",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "show me a hybrid map of santa clara",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "Map-Type",
+          "value" : "\"hybrid\"",
+          "start" : 10,
+          "end" : 16
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa clara\"",
+          "start" : 24,
+          "end" : 35
+        }
+      ]
+    },
+    {
+      "text" : "show me a hybrid map of santa cruz",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "Map-Type",
+          "value" : "\"hybrid\"",
+          "start" : 10,
+          "end" : 16
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa cruz\"",
+          "start" : 24,
+          "end" : 34
+        }
+      ]
+    },
+    {
+      "text" : "show me a map of des moines",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "location",
+          "value" : "\"des moines\"",
+          "start" : 17,
+          "end" : 27
+        }
+      ]
+    },
+    {
+      "text" : "show me a map of new york",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "location",
+          "value" : "\"new york\"",
+          "start" : 17,
+          "end" : 25
+        }
+      ]
+    },
+    {
+      "text" : "show me a map of san francisco",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "location",
+          "value" : "\"san francisco\"",
+          "start" : 17,
+          "end" : 30
+        }
+      ]
+    },
+    {
+      "text" : "show me a map of santa clara",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa clara\"",
+          "start" : 17,
+          "end" : 28
+        }
+      ]
+    },
+    {
+      "text" : "show me a normal map of santa clara",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "Map-Type",
+          "value" : "\"normal\"",
+          "start" : 10,
+          "end" : 16
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa clara\"",
+          "start" : 24,
+          "end" : 35
+        }
+      ]
+    },
+    {
+      "text" : "show me a roadmap of santa clara",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "Map-Type",
+          "value" : "\"roadmap\"",
+          "start" : 10,
+          "end" : 17
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa clara\"",
+          "start" : 21,
+          "end" : 32
+        }
+      ]
+    },
+    {
+      "text" : "show me a satellite map of santa clara",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"maps\""
+        },
+        {
+          "entity" : "Map-Type",
+          "value" : "\"satellite\"",
+          "start" : 10,
+          "end" : 19
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa clara\"",
+          "start" : 27,
+          "end" : 38
+        }
+      ]
+    },
+    {
+      "text" : "show me a terrain map of santa clara",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"greeting\""
+        },
+        {
+          "entity" : "Map-Type",
+          "value" : "\"terrain\"",
+          "start" : 10,
+          "end" : 17
+        },
+        {
+          "entity" : "location",
+          "value" : "\"santa clara\"",
+          "start" : 25,
+          "end" : 36
+        }
+      ]
+    },
+    {
+      "text" : "show me some current events",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        }
+      ]
+    },
+    {
+      "text" : "show me some current news",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        }
+      ]
+    },
+    {
+      "text" : "show me the news",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        }
+      ]
+    },
+    {
+      "text" : "show me the weather",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        }
+      ]
+    },
+    {
+      "text" : "show me what you look like",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "show me your face",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "show yourself",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "tell me a joke",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"joke\""
+        }
+      ]
+    },
+    {
+      "text" : "thank you",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appreciation\""
+        }
+      ]
+    },
+    {
+      "text" : "thanks",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appreciation\""
+        }
+      ]
+    },
+    {
+      "text" : "thanks for your help",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appreciation\""
+        }
+      ]
+    },
+    {
+      "text" : "what are some current events?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        }
+      ]
+    },
+    {
+      "text" : "what are some upcoming holidays",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "what are you?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "what do I have on my calendar for today",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 34,
+          "end" : 39
+        }
+      ]
+    },
+    {
+      "text" : "what do I have on my calendar this week",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-12T00:00:00.000-07:00\"",
+          "start" : 30,
+          "end" : 39
+        }
+      ]
+    },
+    {
+      "text" : "what do I have on my calendar today",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 30,
+          "end" : 35
+        }
+      ]
+    },
+    {
+      "text" : "what do I have planned for this week",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-12T00:00:00.000-07:00\"",
+          "start" : 27,
+          "end" : 36
+        }
+      ]
+    },
+    {
+      "text" : "what do I have planned for today",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 27,
+          "end" : 32
+        }
+      ]
+    },
+    {
+      "text" : "what do you look like",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "what is your appearance",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "what was the weather like yesterday",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-17T00:00:00.000-07:00\"",
+          "start" : 26,
+          "end" : 35
+        }
+      ]
+    },
+    {
+      "text" : "what's my name",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user name\""
+        }
+      ]
+    },
+    {
+      "text" : "what's my purpose",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"meaning of life\""
+        }
+      ]
+    },
+    {
+      "text" : "what's on my calendar",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "what's on my calendar for today?",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 26,
+          "end" : 31
+        }
+      ]
+    },
+    {
+      "text" : "what's on my calendar this week",
+      "entities" : [
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-12T00:00:00.000-07:00\"",
+          "start" : 22,
+          "end" : 31
+        }
+      ]
+    },
+    {
+      "text" : "what's the 3 day forecast",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"3 day\"",
+          "start" : 11,
+          "end" : 16
+        }
+      ]
+    },
+    {
+      "text" : "what's the 7 day forecast?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"7 day\"",
+          "start" : 11,
+          "end" : 16
+        }
+      ]
+    },
+    {
+      "text" : "what's the current forecast",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"current\""
+        }
+      ]
+    },
+    {
+      "text" : "what's the forecast for the next few days",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"3 day\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "{:from \"2016-09-27T00:00:00.000-07:00\", :to \"2016-09-30T00:00:00.000-07:00\"}",
+          "start" : 28,
+          "end" : 41
+        }
+      ]
+    },
+    {
+      "text" : "what's the forecast for the rest of the week",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"7 day\""
+        }
+      ]
+    },
+    {
+      "text" : "what's the forecast for today?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 24,
+          "end" : 29
+        }
+      ]
+    },
+    {
+      "text" : "what's the meaning of life",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"meaning of life\""
+        }
+      ]
+    },
+    {
+      "text" : "what's the nearest holiday",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"holidays\""
+        }
+      ]
+    },
+    {
+      "text" : "what's the news for today?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-30T00:00:00.000-07:00\"",
+          "start" : 20,
+          "end" : 25
+        }
+      ]
+    },
+    {
+      "text" : "what's the three day forecast",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"3 day\"",
+          "start" : 11,
+          "end" : 20
+        }
+      ]
+    },
+    {
+      "text" : "what's the weather currently",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"current\""
+        }
+      ]
+    },
+    {
+      "text" : "what's the weather like this week",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"7 day\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-19T00:00:00.000-07:00\"",
+          "start" : 24,
+          "end" : 33
+        }
+      ]
+    },
+    {
+      "text" : "what's the weather like tomorrow",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-19T00:00:00.000-07:00\"",
+          "start" : 24,
+          "end" : 32
+        }
+      ]
+    },
+    {
+      "text" : "what's the weather look like for the rest of the week",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"7 day\""
+        }
+      ]
+    },
+    {
+      "text" : "what's the weather look like this week?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-12T00:00:00.000-07:00\"",
+          "start" : 29,
+          "end" : 38
+        }
+      ]
+    },
+    {
+      "text" : "what's today's forecast",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-18T00:00:00.000-07:00\"",
+          "start" : 7,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "what's today's forecast?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"today\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-26T00:00:00.000-07:00\"",
+          "start" : 7,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "what's today's news",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        }
+      ]
+    },
+    {
+      "text" : "what's today's news?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"news\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-09-30T00:00:00.000-07:00\"",
+          "start" : 7,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "what's today's weather",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "datetime",
+          "value" : "\"2016-10-04T00:00:00.000-07:00\"",
+          "start" : 7,
+          "end" : 12
+        }
+      ]
+    },
+    {
+      "text" : "what's today's weather?"
+    },
+    {
+      "text" : "whats the seven day forecast?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"weather\""
+        },
+        {
+          "entity" : "Weather-Type",
+          "value" : "\"7 day\"",
+          "start" : 10,
+          "end" : 19
+        }
+      ]
+    },
+    {
+      "text" : "who am I",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"user name\""
+        }
+      ]
+    },
+    {
+      "text" : "who are you?",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"appearance\""
+        }
+      ]
+    },
+    {
+      "text" : "who's the fairest of them all",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"snow white\""
+        }
+      ]
+    },
+    {
+      "text" : "why am i here",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"meaning of life\""
+        }
+      ]
+    },
+    {
+      "text" : "you are a b****",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"insult\""
+        }
+      ]
+    },
+    {
+      "text" : "you are a c***",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"insult\""
+        }
+      ]
+    },
+    {
+      "text" : "you suck d***",
+      "entities" : [
+        {
+          "entity" : "Intent",
+          "value" : "\"insult\""
+        }
+      ]
+    }
+  ]
+}
