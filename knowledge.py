@@ -62,13 +62,13 @@ class Knowledge:
         return ret_headlines
 
     def current_datetime(self):
-        full_time = time.strftime('%d %B %I %M %p').lstrip('0')
+        full_time = time.strftime('%d  %B,  %I %M %p').lstrip('0')
         leading_removed = [i.lstrip('0') for i in full_time]     # to remove the leading 0's
         full_time = ''.join(leading_removed)     # to convert the list to a string
         return full_time
 
     def current_date(self):
-        full_date = time.strftime('%d %B %Y').lstrip('0')
+        full_date = time.strftime('%d  %B,  %Y').lstrip('0')
         return full_date
 
     def current_time(self):
@@ -79,7 +79,7 @@ class Knowledge:
 
 if __name__ == '__main__':
     know_obj = Knowledge('d35c29eecae9b60ada2a0565f75ec5b9')
-    data = know_obj.get_news()
+    data = know_obj.current_date()
     print(data)
 
 

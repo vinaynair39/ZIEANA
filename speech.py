@@ -8,10 +8,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 from gtts import gTTS
 from conversation import Conversation
-import urllib.request
-import urllib.parse
-import re
-import webbrowser
+
 
 class Speech(object):
 
@@ -94,7 +91,7 @@ class Speech(object):
         os.remove(path)
 
     def synthesize_text(self, text):
-        tts = gTTS(text=text, lang='en')
+        tts = gTTS(text=text, lang='en-uk')
         tts.save("tmp.mp3")
         song = AudioSegment.from_mp3("tmp.mp3")
         play(song)
@@ -106,10 +103,10 @@ if __name__ == '__main__':
     conversation_obj = Conversation('vinay')
     while True:
         try:
-            recognizer, audio = speech_obj.listen_to_voice()
-            text = speech_obj.google_speech_recognition(recognizer, audio)
-            intent, output = conversation_obj.convo(text)
-            speech_obj.synthesize_text(output)
+            # recognizer, audio = speech_obj.listen_to_voice()
+            # text = speech_obj.google_speech_recognition(recognizer, audio)
+            # intent, output = conversation_obj.convo(text)
+            speech_obj.synthesize_text('Maha shivaratri')
 
         except ValueError:
             print('I am sorry! some problem has occured. would you mind asking me some another query?')

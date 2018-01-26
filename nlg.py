@@ -259,11 +259,11 @@ class NLG(object):
         :param temperature:
         :param date:
         :param tense:
-        :return:
+        :return:/
         """
 
         ret_phrase = self.generate('none',
-                                   {'subject':"the temperature",
+                                   {'subject': "the temperature",
                                     'object': "%d degrees" % temperature,
                                     'verb': 'is',
                                     'adverbs': ["%s" % self.time_of_day(date, with_adjective=True)

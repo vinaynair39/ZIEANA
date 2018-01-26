@@ -3,7 +3,8 @@ from knowledge import Knowledge
 from speech import Speech
 from vision import Vision
 from my_nlg import NLG
-
+from perfromers import Performers
+from holidays import Holidays
 
 user_name = 'vinay'
 launch_phrase = "ok"
@@ -22,8 +23,9 @@ class Bot(object):
                              )
         self.knowledge = Knowledge(weather_api_token)
         self.vision = Vision(camera=camera)
-        self.nlg = NLG()
-
+        self.nlg = NLG(user_name)
+        self.perfromers = Performers()
+        self.holidays = Holidays()
 
     def start(self):
         """
@@ -60,25 +62,57 @@ class Bot(object):
         :return:
         """
         recognizer, audio = self.speech.listen_to_voice()
-
-        # received audio data, now we'll recognize it using Google Speech Recognition
         speech = self.speech.google_speech_recognition(recognizer, audio)
 
         if speech is not None:
             try:
 
-                entities = None
-                intent = None
-                value1 = None
-                value2 = None
                 intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
-                print(f'Intent:{intent}\nEntities:{entities}\nValue1:{value1}\nValue2:{value2} ' + intent)
-                if intent == 'news':
 
+                if intent == 'news':
                     self.__text_action(output)
-                    data = (self.knowledge.get_news())
-                    for i in data:
-                        self.speech.synthesize_text(i)
+                    self.__news()
+
+
+                elif intent == 'current_time':
+                    output = 'The time is,  ' + self.knowledge.current_time()
+                    self.__text_action(output)
+
+                elif intent == 'current_date':
+                    output = 'It\'s,  ' + self.knowledge.current_date()
+                    self.__text_action(output)
+
+                elif intent == 'holiday':
+                    data = self.holidays.find_next('february')
+                    count = len(data)
+                    format = f"The next holday is at {data[0]},  on the occasion of {data[1]} "
+                    self.speech.synthesize_text(format)
+
+                    if count > 2:
+                        format = f"and we also have a holiday at {data[2]},  on the occasion of {data[3]}"
+                        self.speech.synthesize_text(format)
+
+
+
+
+
+                elif intent == 'music_playlist':
+                    self.__text_action(output)
+                    recognizer, audio = self.speech.listen_to_voice()
+                    speech = self.speech.google_speech_recognition(recognizer, audio)
+                    intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
+                    self.speech.synthesize_text(output)
+                    music_name = self.conversation_obj.response['context']['music_name']
+                    print(music_name)
+                    self.perfromers.playlist(music_name)
+
+                elif intent == "alarm":
+                    self.__text_action(output)
+                    recognizer, audio = self.speech.listen_to_voice()
+                    speech = self.speech.google_speech_recognition(recognizer, audio)
+                    intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
+                    self.speech.synthesize_text(output)
+
                 else:
                     self.speech.synthesize_text(output)
             except Exception as e:
@@ -107,6 +141,14 @@ class Bot(object):
                 self.speech.synthesize_text(interest)
         else:
             self.__text_action("I had some trouble finding news for you")
+
+    def __news(self):
+        data = (self.knowledge.get_news())
+        for i in data:
+            print(i)
+        for i in data:
+            self.speech.synthesize_text(i)
+
 
 if __name__ == "__main__":
     bot = Bot()

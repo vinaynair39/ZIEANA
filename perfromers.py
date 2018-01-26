@@ -7,14 +7,20 @@ import urllib.request
 import urllib.parse
 import re
 import webbrowser
+import threading
 
 
 class Performers:
 
     def play(self, file_name):
-        path = join(os.getcwd(), file_name)
+
+        path = join(os.getcwd(), 'music', file_name + '.mp3')
+        print(path)
         song = AudioSegment.from_mp3(path)
-        play(song)
+        t = threading.Thread(target=play(song))
+        t.start()
+
+
 
     def youtube_player(self, search_query):
         query_string = urllib.parse.urlencode({"search_query":search_query})
@@ -24,7 +30,18 @@ class Performers:
         print(resonse)
         webbrowser.open(resonse)
 
+    def playlist(self, name):
+        music_list = [
+            "so far away"
+
+        ]
+        for i in music_list:
+            if i.lower() == name.lower():
+                print("okay")
+                self.play(name)
+
+
 
 if __name__ == '__main__':
     test = Performers()
-    test.youtube_player()
+    test.playlist(input())
