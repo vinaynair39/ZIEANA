@@ -2,7 +2,6 @@ import requests
 import json
 
 
-
 class Dictionary:
 
     def __init__(self):

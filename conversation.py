@@ -9,6 +9,8 @@ class Conversation:
     def __init__(self, username):
         self.username = username
         self.context = {}
+        self.response = None
+        self.word = None
         self.context['user_name'] = self.username
         self.conversation = ConversationV1(password='GBvL0jyr2BzP', username='d6cafd45-923f-4f68-9bea-65a1167973ff', version='2017-05-26')
         self.intent = None
@@ -20,7 +22,7 @@ class Conversation:
     def convo(self, text=None):
 
         user_input = text
-        response = self.conversation.message(
+        self.response = self.conversation.message(
             workspace_id='e380de5b-7f5b-4287-beb4-3843f449de30',
             input={
                 'text': user_input
@@ -28,34 +30,34 @@ class Conversation:
             context=self.context,
 
         )
-        print(response)
+        print(self.response)
         # If an intent was detected, print it to the console.
-        if response['intents']:
-            self.intent = response['intents'][0]['intent']
+        if self.response['intents']:
+            self.intent = self.response['intents'][0]['intent']
         else:
             self.intent = None
 
-        if response['output']['text']:
-            self.output = response['output']['text'][0]
+        if self.response['output']['text']:
+            self.output = self.response['output']['text'][0]
         else:
             self.output = None
 
         try:
-            self.entities = response['entities'][0]['entity']
+            self.entities = self.response['entities'][0]['entity']
         except Exception:
             pass
 
         try:
-            self.value1 = response['entities'][0]['value']
+            self.value1 = self.response['entities'][0]['value']
         except Exception:
             pass
 
         try:
-            self.value2 = response['entities'][1]['value']
+            self.value2 = self.response['entities'][0]['value']
         except Exception:
             pass
 
-        self.context = response['context']
+        self.context = self.response['context']
         return self.intent, self.entities, self.value1, self.value2, self.output
 
     def convoV2(self, user_name):
@@ -90,4 +92,9 @@ if __name__ == '__main__':
     test = Conversation('vinay')
     while True:
         intent, entities, value1, value2, output = test.convo(input())
-        print(intent + '\n' + output)
+        test.word = test.response['context']['word']
+        print(intent)
+        print(entities)
+        print(value1)
+        print(value2)
+        print(test.word)

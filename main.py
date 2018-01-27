@@ -5,6 +5,7 @@ from vision import Vision
 from my_nlg import NLG
 from perfromers import Performers
 from holidays import Holidays
+from dictionary import Dictionary
 
 user_name = 'vinay'
 launch_phrase = "ok"
@@ -26,6 +27,7 @@ class Bot(object):
         self.nlg = NLG(user_name)
         self.perfromers = Performers()
         self.holidays = Holidays()
+        self.dictionary = Dictionary()
 
     def start(self):
         """
@@ -91,6 +93,32 @@ class Bot(object):
                     if count > 2:
                         format = f"and we also have a holiday at {data[2]},  on the occasion of {data[3]}"
                         self.speech.synthesize_text(format)
+
+                elif intent == 'dictionary':
+
+                    if entities == 'dict_values' and value1 == 'definition' or value2 == 'definition':
+                        word = self.conversation_obj.response['context']['word']
+                        output = self.dictionary.defination(word)
+                        print(output)
+                        self.speech.synthesize_text(output)
+
+                    if entities == 'dict_values' and value1 == 'antonym' or value2 == 'antonym':
+                        word = self.conversation_obj.response['context']['word']
+                        output = self.dictionary.antonyms(word)
+                        print(output)
+                        self.speech.synthesize_text(output)
+
+                    if entities == 'dict_values' and value1 == 'synonym' or value2 == 'synonym':
+                        word = self.conversation_obj.response['context']['word']
+                        output = self.dictionary.synonyms(word)
+                        print(output)
+                        self.speech.synthesize_text(output)
+
+                    if entities == 'dict_values' and value1 == 'rhyme' or value2 == 'rhyme':
+                        word = self.conversation_obj.response['context']['word']
+                        output = self.dictionary.rhymes(word)
+                        print(output)
+                        self.speech.synthesize_text(output)
 
 
 

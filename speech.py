@@ -106,8 +106,7 @@ if __name__ == '__main__':
             # recognizer, audio = speech_obj.listen_to_voice()
             # text = speech_obj.google_speech_recognition(recognizer, audio)
             # intent, output = conversation_obj.convo(text)
-            speech_obj.synthesize_text('Maha shivaratri')
-
+            speech_obj.synthesize_text('oh damn! I could not find any antonym for the word fake;  I am sorry, maybe try some other word?')
         except ValueError:
             print('I am sorry! some problem has occured. would you mind asking me some another query?')
             speech_obj.synthesize_text('I am sorry! some problem has occured. would you mind asking me some another query?')
