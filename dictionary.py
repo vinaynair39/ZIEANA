@@ -67,7 +67,7 @@ class Dictionary:
 
 if __name__ == "__main__":
     t = Dictionary()
-    data = t.defination(input("enter the word"))
+    data = t.synonyms(input("enter the word"))
     print(data)
 
 

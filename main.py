@@ -6,6 +6,7 @@ from my_nlg import NLG
 from perfromers import Performers
 from holidays import Holidays
 from dictionary import Dictionary
+import requests
 
 user_name = 'vinay'
 launch_phrase = "ok"
@@ -13,6 +14,8 @@ use_launch_phrase = True
 debugger_enabled = False
 camera = 0
 weather_api_token = 'd35c29eecae9b60ada2a0565f75ec5b9'
+twilio_account_sid = "AC54ae2752e1452a934167476156168571"
+twilio_auth_token = "7264a522752fc9da26cee19bc7eb066d"
 
 class Bot(object):
     def __init__(self):
