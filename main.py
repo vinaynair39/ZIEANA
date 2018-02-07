@@ -7,11 +7,16 @@ from perfromers import Performers
 from holidays import Holidays
 from dictionary import Dictionary
 import requests
+import json
+import datetime
+import dateutil
+import sys
+sys.path.append("./")
 
 user_name = 'vinay'
 launch_phrase = "ok"
 use_launch_phrase = True
-debugger_enabled = False
+debugger_enabled = True
 camera = 0
 weather_api_token = 'd35c29eecae9b60ada2a0565f75ec5b9'
 twilio_account_sid = "AC54ae2752e1452a934167476156168571"
@@ -37,9 +42,11 @@ class Bot(object):
         Main loop. Waits for the launch phrase, then decides an action.
         :return:
         """
-        # requests.get("http://localhost:8080/clear")
+        requests.get("http://localhost:8080/clear")
         if self.vision.recognize_face():
-            print("Found face")
+            requests.get("http://localhost:8080/statement?text=Found Face")
+            requests.get("http://localhost:8080/clear")
+
             if use_launch_phrase:
                 recognizer, audio = self.speech.listen_to_voice()
                 if self.speech.is_call_to_action(recognizer, audio):
@@ -76,6 +83,7 @@ class Bot(object):
 
                 if intent == 'news':
                     self.__text_action(output)
+                    requests.get("http://localhost:8080/clear")
                     self.__news()
 
 
@@ -91,11 +99,11 @@ class Bot(object):
                     data = self.holidays.find_next('february')
                     count = len(data)
                     format = f"The next holday is at {data[0]},  on the occasion of {data[1]} "
-                    self.speech.synthesize_text(format)
+                    self.__text_action(format)
 
                     if count > 2:
                         format = f"and we also have a holiday at {data[2]},  on the occasion of {data[3]}"
-                        self.speech.synthesize_text(format)
+                        self.__text_action(format)
 
                 elif intent == 'dictionary':
 
@@ -103,25 +111,25 @@ class Bot(object):
                         word = self.conversation_obj.response['context']['word']
                         output = self.dictionary.defination(word)
                         print(output)
-                        self.speech.synthesize_text(output)
+                        self.__text_action(output)
 
                     if entities == 'dict_values' and value1 == 'antonym' or value2 == 'antonym':
                         word = self.conversation_obj.response['context']['word']
                         output = self.dictionary.antonyms(word)
                         print(output)
-                        self.speech.synthesize_text(output)
+                        self.__text_action(output)
 
                     if entities == 'dict_values' and value1 == 'synonym' or value2 == 'synonym':
                         word = self.conversation_obj.response['context']['word']
                         output = self.dictionary.synonyms(word)
                         print(output)
-                        self.speech.synthesize_text(output)
+                        self.__text_action(output)
 
                     if entities == 'dict_values' and value1 == 'rhyme' or value2 == 'rhyme':
                         word = self.conversation_obj.response['context']['word']
                         output = self.dictionary.rhymes(word)
                         print(output)
-                        self.speech.synthesize_text(output)
+                        self.__text_action(output)
 
 
 
@@ -144,8 +152,12 @@ class Bot(object):
                     intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
                     self.speech.synthesize_text(output)
 
+                elif intent == 'weather':
+                    self.__text_action(output)
+                    self.__weather_action()
+
                 else:
-                    self.speech.synthesize_text(output)
+                    self.__text_action(output)
             except Exception as e:
                 print('failed')
                 print(e)
@@ -156,7 +168,7 @@ class Bot(object):
 
     def __text_action(self, text=None):
         if text is not None:
-            # requests.get("http://localhost:8080/statement?text=%s" % text)
+            requests.get("http://localhost:8080/statement?text=%s" % text)
             self.speech.synthesize_text(text)
 
     def __acknowledge_action(self):
@@ -166,7 +178,7 @@ class Bot(object):
         headlines = self.knowledge.get_news()
 
         if headlines:
-            # requests.post("http://localhost:8080/news", data=json.dumps({"articles": headlines}))
+            requests.post("http://localhost:8080/news", data=json.dumps({"articles": headlines}))
             interest = self.nlg.article_interest(headlines)
             if interest is not None:
                 self.speech.synthesize_text(interest)
@@ -175,10 +187,12 @@ class Bot(object):
 
     def __news(self):
         data = (self.knowledge.get_news())
+        requests.post("http://localhost:8080/news", data=json.dumps({"articles": data}))
         for i in data:
             print(i)
         for i in data:
             self.speech.synthesize_text(i)
+
 
 
 if __name__ == "__main__":

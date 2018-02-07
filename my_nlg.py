@@ -1,6 +1,8 @@
 from random import random
 import random
 import datetime
+
+
 class NLG(object):
     """
     Used to generate natural language. Most of these sections are hard coded. However, some use simpleNLG which is
@@ -112,3 +114,4 @@ class NLG(object):
             ret_phrase = "%s %s" % (random.choice(forecast_daily), forecast)
 
         return ret_phrase
+

@@ -5,11 +5,7 @@ public class Py4JServer {
 
     public static void main(String[] args) {
         int port;
-        if (args.length == 0) {
-            System.err.println("You must specify a port number.");
-            System.exit(1);
-        }
-        port = Integer.parseInt(args[0]);
+        port = 8080;
         GatewayServer gatewayServer = new GatewayServer(new Py4JServer(),
                                                         port);
         gatewayServer.start();

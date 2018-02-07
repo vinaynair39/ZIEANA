@@ -12,7 +12,7 @@ from conversation import Conversation
 
 class Speech(object):
 
-    def __init__(self, user, password, launch_phrase="mirror mirror", debugger_enabled=False):
+    def __init__(self, user, password, launch_phrase="mirror mirror", debugger_enabled=True):
 
         self.user = user
         self.password = password
@@ -35,9 +35,10 @@ class Speech(object):
             print("I'm listening")
             audio = r.listen(source)
 
-        self.__debugger_microphone(enable=True)
+        self.__debugger_microphone(enable=False)
         print("Found audio")
         if audio is None:
+            self.__debugger_microphone(enable=True)
             print("I'm listening")
             audio = r.listen(source)
 

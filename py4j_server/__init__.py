@@ -27,11 +27,13 @@ def launch_py4j_server():
     <py4j.java_gateway.JVMView object at 0x...>
     """
     # Launch the server on an ephemeral in a subprocess.
-    _pid = Popen(["java", "-classpath", CLASSPATH, "Py4JServer", "0"],
+    _pid = Popen(["java", "-classpath", CLASSPATH, "Py4JServer", "8080"],
         stdout=PIPE, stdin=PIPE)
 
     # Determine which ephemeral port the server started on.
-    _port = int.from_bytes(_pid.stdout.readline(),byteorder="big")
+    print(type(_pid.stdout.readline()))
+
+    _port = int.from_bytes(_pid.stdout.readline(), byteorder="big")
 
     # Configure the subprocess to be killed when the program exits.
     atexit.register(_pid.kill)
@@ -39,3 +41,7 @@ def launch_py4j_server():
     # Setup the gateway.
     gateway = JavaGateway(GatewayClient(port=_port))
     return gateway
+
+if __name__ == "__main__":
+    test = launch_py4j_server()
+    print(test)
