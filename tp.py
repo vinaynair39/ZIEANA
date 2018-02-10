@@ -1,6 +1,7 @@
 from twilio.rest import Client
 from flask import Flask, request
-from twilio.twiml.messaging_response import MessagingResponse
+from twilio import twiml
+
 
 
 
@@ -17,15 +18,20 @@ class Twilio:
             from_="+17865202738",
             body=message)
 
-
     app = Flask(__name__)
+
     @app.route("/sms", methods=['GET', 'POST'])
+
     def receive_sms():
-        number=request.form[]
+        number=request.form['From']
+        body=request.form['Body']
+        resp = twiml.Response()
+        resp.message(f'{number} said {body}')
+        return str(resp)
 
 
 
-        if __name__ == "__main__":
-            app.run(debug=True)
+    if __name__ == "__main__":
+        app.run(host='192.168.0.102', port=8080, debug=True)
 
 
