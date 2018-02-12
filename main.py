@@ -11,6 +11,7 @@ import json
 import datetime
 import dateutil
 import sys
+from tp import Twilio
 sys.path.append("./")
 
 user_name = 'vinay'
@@ -36,37 +37,34 @@ class Bot(object):
         self.perfromers = Performers()
         self.holidays = Holidays()
         self.dictionary = Dictionary()
+        self.twilio = Twilio(twilio_account_sid, twilio_auth_token)
 
     def start(self):
         """
         Main loop. Waits for the launch phrase, then decides an action.
         :return:
         """
+        test = False
+
         requests.get("http://localhost:8080/clear")
         if self.vision.recognize_face():
             requests.get("http://localhost:8080/statement?text=Found Face")
             requests.get("http://localhost:8080/clear")
 
             if use_launch_phrase:
-                recognizer, audio = self.speech.listen_to_voice()
-                if self.speech.is_call_to_action(recognizer, audio):
-                    self.__acknowledge_action()
-                    test = True
-            else:
-                self.decide_action()
+                while True:
+                    recognizer, audio = self.speech.listen_to_voice()
+                    if self.speech.is_call_to_action(recognizer, audio):
+                        self.__acknowledge_action()
+                        break
 
-        while test:
+        while True:
             try:
                 self.decide_action()
             except ValueError:
-                print('I am sorry! some problem has occured. would you mind asking me some another query?')
-                self.speech.synthesize_text(
-                    'I am sorry! some problem has occured. would you mind asking me some another query?')
-
+                self.__text_action('I am sorry! some problem has occured. would you mind asking me some another query?')
             except requests.exceptions.HTTPError:
-                print('I am sorry! some problem has occured. would you mind asking me some another query?')
-                self.speech.synthesize_text(
-                    'I am sorry! some problem has occured. would you mind asking me some another query?')
+                self.__text_action('I am sorry! some problem has occured. would you mind asking me some another query?')
 
     def decide_action(self):
         """
@@ -108,6 +106,7 @@ class Bot(object):
                 elif intent == 'dictionary':
 
                     if entities == 'dict_values' and value1 == 'definition' or value2 == 'definition':
+
                         word = self.conversation_obj.response['context']['word']
                         output = self.dictionary.defination(word)
                         print(output)
@@ -130,6 +129,20 @@ class Bot(object):
                         output = self.dictionary.rhymes(word)
                         print(output)
                         self.__text_action(output)
+
+                elif intent == 'send_sms':
+                    self.__text_action(output)
+                    person = self.conversation_obj.response['context']['person']
+                    recognizer, audio = self.speech.listen_to_voice()
+                    speech = self.speech.google_speech_recognition(recognizer, audio)
+                    intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
+
+                    message = self.conversation_obj.response['context']['message']
+                    to = self.twilio.phone_log[person]
+                    self.twilio.send_sms(to.lower(), message)
+                    self.__text_action(output)
+
+
 
 
 

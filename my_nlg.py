@@ -77,6 +77,16 @@ class NLG(object):
 
         return ret_phrase
 
+    def dictionary_nlg(self):
+
+        phrases = [
+            "Alright!",
+            "sure, Let me think!",
+            "ay ay captain!",
+            "I'm on it!"
+        ]
+
+        return random.choice(phrases)
 
     def forecast(self, forecast_obj):
 

@@ -1,9 +1,4 @@
 from twilio.rest import Client
-from flask import Flask, request
-from twilio import twiml
-
-
-
 
 class Twilio:
 
@@ -18,20 +13,15 @@ class Twilio:
             from_="+17865202738",
             body=message)
 
-    app = Flask(__name__)
-
-    @app.route("/sms", methods=['GET', 'POST'])
-
-    def receive_sms():
-        number=request.form['From']
-        body=request.form['Body']
-        resp = twiml.Response()
-        resp.message(f'{number} said {body}')
-        return str(resp)
+    phone_log = {
+        'mum': "+919819585343",
+        'dad': "+917977155639",
+    }
 
 
 
-    if __name__ == "__main__":
-        app.run(host='192.168.0.102', port=8080, debug=True)
 
 
+if __name__ == "__main__":
+    obj = Twilio('AC54ae2752e1452a934167476156168571','7264a522752fc9da26cee19bc7eb066d')
+    obj.se

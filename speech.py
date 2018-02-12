@@ -19,6 +19,7 @@ class Speech(object):
         self.launch_phrase = launch_phrase
         self.debugger_enabled = debugger_enabled
         self.__debugger_microphone(enable=False)
+        self.counter = 0
 
     def listen_to_voice(self):  # obtain audio from the microphone
 
@@ -26,32 +27,21 @@ class Speech(object):
         r = sr.Recognizer()
         # Creates a new Microphone instance, which represents a physical microphone on the computer.
         m = sr.Microphone()
-        present = False
+
         with m as source:  # open the microphone and start recording, source is the microphone(m's) instance
             r.adjust_for_ambient_noise(source)
             r.dynamic_energy_threshold = True
-            r.pause_threshold = 0.8  # minimum length of silence (in sec) that will be considered as the end of phrase
+            r.pause_threshold = 0.8  # minimum length of silence that will be considered as the end of phrase
             self.__debugger_microphone(enable=True)
             print("I'm listening")
-            audio = r.listen(source)
-            present = True
-            if audio is None:
-                with m as source:  # open the microphone and start recording, source is the microphone(m's) instance
-                    r.adjust_for_ambient_noise(source)
-                    r.dynamic_energy_threshold = True
-                    r.pause_threshold = 0.8  # minimum length of silence (in sec) that will be considered as the end of phrase
-                    self.__debugger_microphone(enable=True)
-                    print("I'm listening")
-                    audio = r.listen(source)
-                    present = True
-            else:
+            audio1 = r.listen(source)
+            if audio1 is not None:
+                present = True
                 requests.get("http://localhost:8080/Found_audio?present=%s" % str(present))
                 self.__debugger_microphone(enable=False)
                 print("Found audio")
 
-
-
-        return r, audio
+        return r, audio1
 
     def google_speech_recognition(self, recognizer, audio):
         speech = None
@@ -59,11 +49,11 @@ class Speech(object):
             speech = recognizer.recognize_google(audio)
             print("Zieana thinks you said " + speech)
         except sr.UnknownValueError:
-            self.listen_to_voice()
+            pass
+            # print("audio not foundn")
+            # self.listen_to_voice()
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
-        if speech is None:
-            self.listen_to_voice()
         else:
             return speech
 

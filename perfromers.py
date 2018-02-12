@@ -41,11 +41,6 @@ class Performers:
                 self.play(name)
 
 
-
-
-
-
-
 if __name__ == '__main__':
     test = Performers()
     test.playlist(input())
