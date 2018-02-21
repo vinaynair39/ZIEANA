@@ -8,6 +8,8 @@ import urllib.parse
 import re
 import webbrowser
 import threading
+import requests
+import json
 
 
 class Performers:
@@ -40,7 +42,20 @@ class Performers:
                 print("okay")
                 self.play(name)
 
+    def find_images(self, search_word):
+        headers = {'Api-Key': '8z76ceavpadeka7hrkze6kff'}
+        r = requests.get(
+            f'https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase={search_word}',
+            headers=headers
+        )
+        data = json.loads(r.text)
+        image1 = data['images'][0]['display_sizes'][0]['uri']
+        image2 = data['images'][1]['display_sizes'][0]['uri']
+        return image1, image2
+
+
 
 if __name__ == '__main__':
     test = Performers()
-    test.playlist(input())
+    image1 = test.find_images(input())
+    print(image1)

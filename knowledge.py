@@ -79,7 +79,7 @@ class Knowledge:
 
 if __name__ == '__main__':
     know_obj = Knowledge('d35c29eecae9b60ada2a0565f75ec5b9')
-    data = know_obj.find_weather()
+    data = know_obj.get_location()
     print(data)
 
 

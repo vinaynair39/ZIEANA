@@ -143,6 +143,16 @@ class Bot(object):
                     self.__text_action(output)
 
 
+                elif intent == 'images':
+                    self.__text_action(output)
+                    word = self.conversation_obj.response['context']['image']
+                    image1, image2 = self.perfromers.find_images(word)
+                    body = {'url': image1}
+                    requests.post("http://localhost:8080/image", data=json.dumps(body))
+
+
+
+
 
 
 

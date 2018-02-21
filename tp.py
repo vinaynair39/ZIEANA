@@ -14,14 +14,23 @@ class Twilio:
             body=message)
 
     phone_log = {
-        'mum': "+919819585343",
-        'dad': "+917977155639",
+        'mum': "919819585343",
+        'dad': "917977155639",
+        'Pranav': "917506105179",
     }
 
+    def place_Call(self, to):
+        calls = self.client.calls.create(
+            to=f'{to}',
+            from_="+17865202738",
+            url="http://demo.twilio.com/docs/voice.xml"
+
+        )
+        print(calls.sid)
 
 
 
 
 if __name__ == "__main__":
-    obj = Twilio('AC54ae2752e1452a934167476156168571','7264a522752fc9da26cee19bc7eb066d')
-    obj.se
+    obj = Twilio('AC54ae2752e1452a934167476156168571', '7264a522752fc9da26cee19bc7eb066d')
+    obj.place_Call("919819585343")
