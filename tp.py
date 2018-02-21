@@ -17,6 +17,7 @@ class Twilio:
         'mum': "919819585343",
         'dad': "917977155639",
         'Pranav': "917506105179",
+        'Vinay': "917715001084",
     }
 
     def place_Call(self, to):
@@ -33,4 +34,4 @@ class Twilio:
 
 if __name__ == "__main__":
     obj = Twilio('AC54ae2752e1452a934167476156168571', '7264a522752fc9da26cee19bc7eb066d')
-    obj.place_Call("919819585343")
+    obj.place_Call("917715001084")

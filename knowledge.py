@@ -56,7 +56,7 @@ class Knowledge:
     def get_news(self):
         ret_headlines = []
         feed = feedparser.parse("https://news.google.com/news?ned=%s&output=rss" % self.country_code)
-        for post in feed.entries[1:6]:
+        for post in feed.entries[1:3]:
             ret_headlines.append(post.title)
 
         return ret_headlines

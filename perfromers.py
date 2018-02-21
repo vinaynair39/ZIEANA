@@ -45,7 +45,7 @@ class Performers:
     def find_images(self, search_word):
         headers = {'Api-Key': '8z76ceavpadeka7hrkze6kff'}
         r = requests.get(
-            f'https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase={search_word}',
+            f'https://api.gettyimages.com/v3/search/images?file_types=jpg&minimum_size=xx_large&phrase={search_word}&sort_order=best_match',
             headers=headers
         )
         data = json.loads(r.text)

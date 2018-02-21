@@ -150,6 +150,13 @@ class Bot(object):
                     body = {'url': image1}
                     requests.post("http://localhost:8080/image", data=json.dumps(body))
 
+                elif intent == 'place_call':
+                    self.__text_action(output)
+                    person = self.conversation_obj.response['context']['person']
+                    to = self.twilio.phone_log[person]
+                    self.twilio.place_Call(to)
+
+
 
 
 
