@@ -47,7 +47,7 @@ class NLG(object):
         time_acknowledgement = [
             f"Good {self.time_of_day(date)}. What can I do for you?",
             f"hey! Good {self.time_of_day(date)}. How can I help? ",
-            f"Hello there! Good {self.time_of_day(date)}. How can I help you? ",
+            f"Good {self.time_of_day(date)} {user_name}. How can I help you? ",
         ]
 
         personal_acknowledgement = [

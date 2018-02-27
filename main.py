@@ -6,11 +6,11 @@ from my_nlg import NLG
 from perfromers import Performers
 from holidays import Holidays
 from dictionary import Dictionary
+from movies import Movie
 import requests
 import json
-import datetime
-import dateutil
 import sys
+import re
 from tp import Twilio
 sys.path.append("./")
 
@@ -38,6 +38,7 @@ class Bot(object):
         self.holidays = Holidays()
         self.dictionary = Dictionary()
         self.twilio = Twilio(twilio_account_sid, twilio_auth_token)
+        self.movie = Movie()
 
     def start(self):
         """
@@ -78,12 +79,12 @@ class Bot(object):
             try:
 
                 intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
+                print(value1 + value2)
 
                 if intent == 'news':
                     self.__text_action(output)
                     requests.get("http://localhost:8080/clear")
                     self.__news()
-
 
                 elif intent == 'current_time':
                     output = 'The time is,  ' + self.knowledge.current_time()
@@ -94,7 +95,7 @@ class Bot(object):
                     self.__text_action(output)
 
                 elif intent == 'holiday':
-                    data = self.holidays.find_next('february')
+                    data = self.holidays.find_next('march')
                     count = len(data)
                     format = f"The next holday is at {data[0]},  on the occasion of {data[1]} "
                     self.__text_action(format)
@@ -146,6 +147,7 @@ class Bot(object):
                 elif intent == 'images':
                     self.__text_action(output)
                     word = self.conversation_obj.response['context']['image']
+                    word = re.sub(r'^\W*\w+\W*', '', word)
                     image1, image2 = self.perfromers.find_images(word)
                     body = {'url': image1}
                     requests.post("http://localhost:8080/image", data=json.dumps(body))
@@ -155,6 +157,85 @@ class Bot(object):
                     person = self.conversation_obj.response['context']['person']
                     to = self.twilio.phone_log[person]
                     self.twilio.place_Call(to)
+
+                elif intent == 'movie':
+
+                    if entities == 'movie_stuff' and value1 == 'rating' or value2 == 'rating':
+                        movie_name = self.conversation_obj.response['context']['movie_name']
+                        movie_name = re.sub(r'^\W*\w+\W*', '', movie_name)
+                        try:
+                            data = self.movie.rating(movie_name)
+                            info = data['data']
+                            poster = data['poster']
+                            body = {'url': poster}
+                            requests.post("http://localhost:8080/image", data=json.dumps(body))
+                            self.speech.synthesize_text(info)
+                        except Exception:
+                            self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
+
+                    if entities == 'movie_stuff' and value1 == 'plot' or value2 == 'plot':
+                        movie_name = self.conversation_obj.response['context']['movie_name']
+                        movie_name = re.sub(r'^\W*\w+\W*', '', movie_name)
+                        try:
+                            data = self.movie.plot(movie_name)
+                            info = data['data']
+                            poster = data['poster']
+                            body = {'url': poster}
+                            print(info  + poster)
+                            requests.post("http://localhost:8080/image", data=json.dumps(body))
+                            self.speech.synthesize_text(info)
+
+                        except Exception:
+                            self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
+
+
+                    if entities == 'movie_stuff' and value1 == 'cast' or value2 == 'cast':
+                        movie_name = self.conversation_obj.response['context']['movie_name']
+                        movie_name = re.sub(r'^\W*\w+\W*', '', movie_name)
+                        try:
+                            data = self.movie.cast(movie_name)
+                            info = data['data']
+                            poster = data['poster']
+                            body = {'url': poster}
+                            requests.post("http://localhost:8080/image", data=json.dumps(body))
+                            self.speech.synthesize_text(info)
+                        except Exception:
+                            self.__text_action(f"I couldn't find anything named {movie_name}.... Try again maybe?")
+
+
+                    if entities == 'movie_stuff' and value1 == 'genre' or value2 == 'genre':
+                        movie_name = self.conversation_obj.response['context']['movie_name']
+                        movie_name = re.sub(r'^\W*\w+\W*', '', movie_name)
+                        try:
+                            data = self.movie.genre(movie_name)
+                            info = data['data']
+                            poster = data['poster']
+                            body = {'url': poster}
+                            requests.post("http://localhost:8080/image", data=json.dumps(body))
+                            self.speech.synthesize_text(info)
+                        except Exception:
+                            self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
+
+                    if entities == 'movie_stuff' and value1 == 'brief' or value2 == 'brief':
+                        movie_name = self.conversation_obj.response['context']['movie_name']
+                        movie_name = re.sub(r'^\W*\w+\W*', '', movie_name)
+                        try:
+                            data = self.movie.movie(movie_name)
+                            info = data['data']
+                            poster = data['poster']
+                            body = {'url': poster}
+                            requests.post("http://localhost:8080/image", data=json.dumps(body))
+                            self.speech.synthesize_text(info)
+                        except Exception:
+                            self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
+
+
+
+
+
+                elif intent == "turn_off":
+                    self.__text_action(output)
+                    exit(0)
 
 
 
@@ -185,6 +266,10 @@ class Bot(object):
                 elif intent == 'weather':
                     self.__text_action(output)
                     self.__weather_action()
+
+                elif intent == 'face':
+                    requests.get("http://localhost:8080/face")
+
 
                 else:
                     self.__text_action(output)

@@ -115,10 +115,3 @@ if __name__ == '__main__':
             print('I am sorry! some problem has occured. would you mind asking me some another query?')
             speech_obj.synthesize_text('I am sorry! some problem has occured. would you mind asking me some another query?')
 
-
-
-
-
-
-
-

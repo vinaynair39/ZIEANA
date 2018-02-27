@@ -33,7 +33,7 @@ class Holidays:
             holiday = self.march
         for i, j in holiday.items():
             num = 0
-            full_date = 2  # time.strftime('%d').lstrip('0')
+            full_date = 1 #time.strftime('%d').lstrip('0')
             date = i.split(" ")
             if int(date[num]) > int(full_date):
                 data += [i, j]

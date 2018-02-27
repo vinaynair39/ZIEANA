@@ -3,8 +3,7 @@ import json
 import feedparser
 import time
 import datetime
-
-
+import time
 class Knowledge:
 
     def __init__(self, darksky_token, country_code='in'):
@@ -56,7 +55,7 @@ class Knowledge:
     def get_news(self):
         ret_headlines = []
         feed = feedparser.parse("https://news.google.com/news?ned=%s&output=rss" % self.country_code)
-        for post in feed.entries[1:3]:
+        for post in feed.entries[1:4]:
             ret_headlines.append(post.title)
 
         return ret_headlines

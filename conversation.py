@@ -15,8 +15,8 @@ class Conversation:
         self.conversation = ConversationV1(password='GBvL0jyr2BzP', username='d6cafd45-923f-4f68-9bea-65a1167973ff', version='2017-05-26')
         self.intent = None
         self.entities = None
-        self.value1 = None
-        self.value2 = None
+        self.value1 = ""
+        self.value2 = ""
         self.output = None
 
     def convo(self, text=None):
@@ -53,9 +53,12 @@ class Conversation:
             pass
 
         try:
-            self.value2 = self.response['entities'][0]['value']
+            self.value2 = self.response['entities'][1]['value']
         except Exception:
             pass
+
+        if self.value2 is None:
+            self.value2 = ""
 
         self.context = self.response['context']
         return self.intent, self.entities, self.value1, self.value2, self.output
@@ -92,9 +95,7 @@ if __name__ == '__main__':
     test = Conversation('vinay')
     while True:
         intent, entities, value1, value2, output = test.convo(input())
-        test.word = test.response['context']['word']
-        print(intent)
-        print(entities)
-        print(value1)
-        print(value2)
-        print(test.word)
+        print('1 ' + intent)
+        print('2 ' + entities)
+        print("3 " + value1)
+        print("4 " + value2)
