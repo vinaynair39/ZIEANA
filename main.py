@@ -6,6 +6,7 @@ from my_nlg import NLG
 from perfromers import Performers
 from holidays import Holidays
 from dictionary import Dictionary
+from country import Countries
 from movies import Movie
 import requests
 import json
@@ -39,6 +40,7 @@ class Bot(object):
         self.dictionary = Dictionary()
         self.twilio = Twilio(twilio_account_sid, twilio_auth_token)
         self.movie = Movie()
+        self.countries = Countries()
 
     def start(self):
         """
@@ -228,6 +230,33 @@ class Bot(object):
                             self.speech.synthesize_text(info)
                         except Exception:
                             self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
+
+                elif  intent == "countries":
+
+                    if entities == 'country' and value1 == "population" or value2 == "population":
+
+                        word = self.conversation_obj.response['context']['country_name']
+                        output1 = self.countries.population(word)
+                        self.__text_action(output1)
+
+                    if entities == 'country' and value1 == "about" or value2 == "about":
+
+                        word = self.conversation_obj.response['context']['country_name']
+                        output1 = self.countries.country_info(word)
+                        self.__text_action(output1)
+
+                    if entities == 'country' and value1 == "currency" or value2 == "currency":
+
+                        word = self.conversation_obj.response['context']['country_name']
+                        output1 = self.countries.currency(word)
+                        self.__text_action(output1)
+
+                    if entities == 'country' and value1 == "capital" or value2 == "capital":
+
+                        word = self.conversation_obj.response['context']['country_name']
+                        output1 = self.countries.capital(word)
+                        self.__text_action(output1)
+
 
 
 

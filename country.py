@@ -1,17 +1,3 @@
-import requests
-import json
-
-# key = 195003
-#
-# r = requests.get(f'http://www.theaudiodb.com/api/v1/json/{key}/search.php?s={"eminem"}')
-# data = json.loads(r.text)
-# print(json.dumps(data, indent=2))
-#
-#
-# x = requests.get(f'http://www.theaudiodb.com/api/v1/json/{key}/mvid.php?i={"111304"}')
-# data = json.loads(x.text)
-# print(json.dumps(data, indent=2))
-
 import json
 import requests
 
