@@ -10,22 +10,36 @@ import webbrowser
 import threading
 import requests
 import json
-
+from pygame import mixer
+from multiprocessing.pool import ThreadPool
+import random
 
 class Performers:
+
+    def __init__(self):
+        self.music_list = [
+            "so far away",
+            "pray for me kendrick lamar",
+            "The weekend reminder",
+
+        ]
 
     def play(self, file_name):
 
         path = join(os.getcwd(), 'music', file_name + '.mp3')
         print(path)
-        song = AudioSegment.from_mp3(path)
+        mixer.init()
+        mixer.music.load(path)
+        pool = ThreadPool(processes=1)
+        async_result = pool.apply_async(mixer.music.play)
+        async_result.get()
+
+        # song = AudioSegment.from_mp3(path)
         # t = threading.Thread(target=play(song))
         # t.start()
-        play(song)
 
-
-
-
+    def stop(self):
+        mixer.music.stop()
 
 
     def youtube_player(self, search_query):
@@ -37,14 +51,16 @@ class Performers:
         webbrowser.open(resonse)
 
     def playlist(self, name):
-        music_list = [
-            "so far away"
 
-        ]
-        for i in music_list:
+        for i in self.music_list:
             if i.lower() == name.lower():
-                print("okay")
-                self.play(name)
+                return True
+
+    def random_play(self):
+        index = random.randrange(0, len(self.music_list) + 1)
+        music_name = self.music_list.pop(index)
+        return music_name
+
 
     def find_images(self, search_word):
         headers = {'Api-Key': '8z76ceavpadeka7hrkze6kff'}
@@ -103,4 +119,5 @@ class Performers:
 
 if __name__ == '__main__':
     test = Performers()
-    test.play(input())
+    data = test.random_play()
+    print(data)

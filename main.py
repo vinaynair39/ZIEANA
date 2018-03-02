@@ -304,14 +304,44 @@ class Bot(object):
 
 
                 elif intent == 'music_playlist':
+
                     self.__text_action(output)
                     recognizer, audio = self.speech.listen_to_voice()
                     speech = self.speech.google_speech_recognition(recognizer, audio)
                     intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
-                    self.speech.synthesize_text(output)
-                    music_name = self.conversation_obj.response['context']['music_name']
-                    print(music_name)
-                    t = threading.Thread(target=self.perfromers.playlist, args=(music_name,))
+
+                    if entities == "something" and value1 == "something" or value2 == "something":
+                        self.__text_action(output)
+                        music_name = self.perfromers.random_play()
+                        self.perfromers.play(music_name)
+                        requests.get("http://localhost:8080/music")
+
+
+                    else:
+
+                        self.speech.synthesize_text(output)
+                        music_name = self.conversation_obj.response['context']['music_name']
+                        print(music_name)
+                        if self.perfromers.playlist(music_name):
+                            self.perfromers.play(music_name)
+                            requests.get("http://localhost:8080/music")
+                        else:
+                            self.__text_action(f"It looks like you don't have {music_name} in your playlist! Shall i play you an other song?")
+
+                elif intent == "direct_music":
+
+                    if entities == "something" and value1 == "something" or value2 == "something":
+                        self.__text_action(output)
+                        music_name = self.perfromers.random_play()
+                        self.perfromers.play(music_name)
+                        requests.get("http://localhost:8080/music")
+
+
+
+
+                elif intent == 'turn_off':
+                    self.perfromers.stop()
+                    requests.get("http://localhost:8080/clear")
 
 
 
