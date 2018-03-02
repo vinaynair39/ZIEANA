@@ -78,15 +78,14 @@ class Speech(object):
 
         text = text
         text_to_speech = TextToSpeechV1(username=self.user, password=self.password)
-        path = join(os.getcwd(), 'output.mp3')
+        path = join(os.getcwd(), 'output.ogg')
 
         # synthesize method returns bytes of audio so we have to write it inside a file
         with open(path, 'wb') as audio_file:
             audio_file.write(
-                text_to_speech.synthesize(text, accept='audio/mp3', voice="en-US_AllisonVoice"))
-
+                text_to_speech.synthesize(text, accept='audio/ogg;codecs=vorbis', voice="en-US_AllisonVoice"))
         # playing the created vocals
-        voice = AudioSegment.from_mp3(path)
+        voice = AudioSegment.from_ogg(path)
         play(voice)
         os.remove(path)
 
@@ -101,17 +100,3 @@ class Speech(object):
 if __name__ == '__main__':
     speech_obj = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX')
     conversation_obj = Conversation('vinay')
-    while True:
-        try:
-             recognizer, audio = speech_obj.listen_to_voice()
-             text = speech_obj.google_speech_recognition(recognizer, audio)
-             intent, output = conversation_obj.convo(text)
-             speech_obj.synthesize_text(output)
-        except ValueError:
-            print('I am sorry! some problem has occured. would you mind asking me some another query?')
-            speech_obj.synthesize_text('I am sorry! some problem has occured. would you mind asking me some another query?')
-
-        except requests.exceptions.HTTPError:
-            print('I am sorry! some problem has occured. would you mind asking me some another query?')
-            speech_obj.synthesize_text('I am sorry! some problem has occured. would you mind asking me some another query?')
-

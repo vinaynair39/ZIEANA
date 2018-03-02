@@ -32,6 +32,12 @@ class Countries:
         population = data[0]['population']
         return f"{country} has a population of about {population}"
 
+    # t1 = threading.Thread(target=self.__news)
+    # t2 = threading.Thread(target=self.stop_microphone, args=(intent, t1))
+    #
+    # t1.start()
+    # t2.start()
+
 
     def currency(self, country):
         r = requests.get(f'https://restcountries.eu/rest/v2/name/{country}')

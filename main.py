@@ -8,6 +8,7 @@ from holidays import Holidays
 from dictionary import Dictionary
 from country import Countries
 from movies import Movie
+import threading
 import requests
 import json
 import sys
@@ -86,7 +87,9 @@ class Bot(object):
                 if intent == 'news':
                     self.__text_action(output)
                     requests.get("http://localhost:8080/clear")
-                    self.__news()
+                    t = threading.Thread(target=self.__news)
+                    t.start()
+
 
                 elif intent == 'current_time':
                     output = 'The time is,  ' + self.knowledge.current_time()
@@ -105,6 +108,8 @@ class Bot(object):
                     if count > 2:
                         format = f"and we also have a holiday at {data[2]},  on the occasion of {data[3]}"
                         self.__text_action(format)
+
+
 
                 elif intent == 'dictionary':
 
@@ -190,7 +195,6 @@ class Bot(object):
                         except Exception:
                             self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
 
-
                     if entities == 'movie_stuff' and value1 == 'cast' or value2 == 'cast':
                         movie_name = self.conversation_obj.response['context']['movie_name']
                         movie_name = re.sub(r'^\W*\w+\W*', '', movie_name)
@@ -231,6 +235,37 @@ class Bot(object):
                         except Exception:
                             self.__text_action(f"I couldn't find anything named {movie_name}. try again maybe?")
 
+                elif intent == "distance":
+
+                    origin = self.conversation_obj.response['context']['origin']
+                    origin = origin.lstrip('from')
+                    origin = origin.rstrip('to')
+                    destination = self.conversation_obj.response['context']['destination']
+                    destination = destination.lstrip('to')
+                    text = self.knowledge.distance(origin, destination)
+                    self.__text_action(text)
+
+                elif intent == 'ola':
+                    origin = self.conversation_obj.response['context']['origin']
+                    origin = origin.lstrip('from')
+                    origin = origin.rstrip('to')
+                    origin_lat, origin_lng = self.knowledge.lat_lng(origin)
+                    destination = self.conversation_obj.response['context']['destination']
+                    destination = destination.lstrip('to')
+                    destination_lat, destination_lng = self.knowledge.lat_lng(destination)
+
+
+
+
+
+
+
+
+
+
+
+
+
                 elif  intent == "countries":
 
                     if entities == 'country' and value1 == "population" or value2 == "population":
@@ -262,13 +297,6 @@ class Bot(object):
 
 
 
-                elif intent == "turn_off":
-                    self.__text_action(output)
-                    exit(0)
-
-
-
-
 
 
 
@@ -283,14 +311,10 @@ class Bot(object):
                     self.speech.synthesize_text(output)
                     music_name = self.conversation_obj.response['context']['music_name']
                     print(music_name)
-                    self.perfromers.playlist(music_name)
+                    t = threading.Thread(target=self.perfromers.playlist, args=(music_name,))
 
-                elif intent == "alarm":
-                    self.__text_action(output)
-                    recognizer, audio = self.speech.listen_to_voice()
-                    speech = self.speech.google_speech_recognition(recognizer, audio)
-                    intent, entities, value1, value2, output = self.conversation_obj.convo(speech)
-                    self.speech.synthesize_text(output)
+
+
 
                 elif intent == 'weather':
                     self.__text_action(output)

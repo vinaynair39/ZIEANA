@@ -74,12 +74,42 @@ class Knowledge:
         full_time = time.strftime('%I %M %p').lstrip('0')
         return full_time
 
+    def distance(self, origin, destination):
+        key = 'AIzaSyB-tZAt2uCt2PzGjn_jNWFBjgT17nR47MY'
+        r = requests.get(f'https://maps.googleapis.com/maps/api/distancematrix/json?origins={origin}&destinations={destination}&key={key}')
+        data = json.loads(r.text)
+        distance = data['rows'][0]['elements'][0]['distance']['text']
+        time = data['rows'][0]['elements'][0]['duration']['text']
 
+        text = f'The distance is {distance}. It will take you approximately {time} to reach there.'
+
+        return text
+
+    def lat_lng(self, address):
+        key = 'AIzaSyAV_ErAt2TjNSFKE74cE6MKVafAiCr4nSs'
+        r = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={key}')
+        data = json.loads(r.text)
+        # print(json.dumps(data, indent=2))
+        lat = data['results'][0]['geometry']['location']['lat']
+        lng = data['results'][0]['geometry']['location']['lng']
+
+        return lat, lng
+
+    def ola_fare(self, origin_lat, origin_lng, destination_lat, destination_lng):
+
+        r = requests.get(f'https://devapi.olacabs.com/v1/products?pickup_lat={origin_lat}&pickup_lng={origin_lng}&drop_lat={destination_lat}&drop_lng={destination_lng}&service_type=p2p')
+        data = json.loads(r.text)
+        print(json.dumps(data, indent=2))
 
 if __name__ == '__main__':
     know_obj = Knowledge('d35c29eecae9b60ada2a0565f75ec5b9')
-    data = know_obj.get_location()
-    print(data)
+    origin_lat, origin_lng = know_obj.lat_lng('airoli plaza b sector 16, airoli, navi mumbai')
+    destination_lat, destination_lng = know_obj.lat_lng('pillai panvel')
+    know_obj.ola_fare(origin_lat, origin_lng, destination_lat, destination_lng)
+
+
+
+
 
 
 

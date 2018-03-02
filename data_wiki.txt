@@ -1,0 +1,20 @@
+The United Nations member states are the 193 sovereign states that are members of the United Nations (UN) and have equal representation in the UN General Assembly.[2] The UN is the world's largest intergovernmental organization.
+In addition to the member states, the UN also invites non-member states to become observers at the UN General Assembly (currently two: the Holy See and Palestine), allowing them to participate and speak in General Assembly meetings, but not vote. Observers are generally intergovernmental organizations and international organizations and entities whose statehood or sovereignty is not precisely defined.
+
+Country          Admission_date 
+
+                 1 November 1945
+Angola           14 December 1955
+                 2 March 1992   
+Antigua and Barbuda  18 September 1973
+                 21 September 1971
+Argentina        17 September 1974
+                 9 December 1966
+Armenia          24 October 1945
+                 27 December 1945
+Australia        25 September 1981
+
+
+This page was last edited on 9 February 2018, at 12:32.
+
+Now let us find some basic information about these countries from their Wikipedia page, using a Python script

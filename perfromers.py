@@ -19,8 +19,12 @@ class Performers:
         path = join(os.getcwd(), 'music', file_name + '.mp3')
         print(path)
         song = AudioSegment.from_mp3(path)
-        t = threading.Thread(target=play(song))
-        t.start()
+        # t = threading.Thread(target=play(song))
+        # t.start()
+        play(song)
+
+
+
 
 
 
@@ -99,4 +103,4 @@ class Performers:
 
 if __name__ == '__main__':
     test = Performers()
-    test.movies(input())
+    test.play(input())

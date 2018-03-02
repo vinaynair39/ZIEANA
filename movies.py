@@ -83,6 +83,8 @@ class Movie:
     def movie(self, search_query):
         r = requests.get(f"http://www.omdbapi.com/?apikey={self.key}&t={search_query}")
         data = json.loads(r.text)
+        rating1_name = None
+        rating1_value = None
         try:
             title = data['Title']
             cast = data['Actors']
@@ -90,8 +92,6 @@ class Movie:
             plot = data['Plot']
             released = data['Released']
             imdbrating = data['imdbRating']
-            rating1_name = None
-            rating1_value = None
         except Exception:
             pass
         try:

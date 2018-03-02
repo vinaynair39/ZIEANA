@@ -46,13 +46,11 @@ class NLG(object):
         date = datetime.datetime.now()
         time_acknowledgement = [
             f"Good {self.time_of_day(date)}. What can I do for you?",
-            f"hey! Good {self.time_of_day(date)}. How can I help? ",
-            f"Good {self.time_of_day(date)} {user_name}. How can I help you? ",
+            f"Hey, what's up?",
+            f"Good {self.time_of_day(date)} {user_name}. How may I help? ",
         ]
 
         personal_acknowledgement = [
-            "How can I help you today, %s" % user_name,
-            "How can I help you, %s" % user_name,
             "What can I do for you, %s" % user_name,
             "Hi %s, what can I do for you?" % user_name,
             "Hey %s, what can I do for you?" % user_name
