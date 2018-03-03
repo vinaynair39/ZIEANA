@@ -294,7 +294,8 @@ class Bot(object):
 
 
 
-
+                elif intent == "quit_system":
+                    sys.exit(1)
 
 
 
