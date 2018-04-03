@@ -33,7 +33,7 @@ class Knowledge:
         lat = loc_obj['lat']
         lon = loc_obj['lon']
 
-        weather_req_url = f"https://api.darksky.net/forecast/{self.darksky_api_token}/{lat},{lon}?units=si"
+        weather_req_url = "https://api.darksky.net/forecast/{}/{},{}?units=si".format(self.darksky_api_token, 'x', lat, lon)
         r = requests.get(weather_req_url)
         weather_json = json.loads(r.text)
 
@@ -76,18 +76,18 @@ class Knowledge:
 
     def distance(self, origin, destination):
         key = 'AIzaSyB-tZAt2uCt2PzGjn_jNWFBjgT17nR47MY'
-        r = requests.get(f'https://maps.googleapis.com/maps/api/distancematrix/json?origins={origin}&destinations={destination}&key={key}')
+        r = requests.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins={}&destinations={}&key={}'.format(origin, destination, key))
         data = json.loads(r.text)
         distance = data['rows'][0]['elements'][0]['distance']['text']
         time = data['rows'][0]['elements'][0]['duration']['text']
 
-        text = f'The distance is {distance}. It will take you approximately {time} to reach there.'
+        text = 'The distance is {}. It will take you approximately {} to reach there.'.format(distance, time)
 
         return text
 
     def lat_lng(self, address):
         key = 'AIzaSyAV_ErAt2TjNSFKE74cE6MKVafAiCr4nSs'
-        r = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={key}')
+        r = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}'.format(address, key))
         data = json.loads(r.text)
         # print(json.dumps(data, indent=2))
         lat = data['results'][0]['geometry']['location']['lat']
@@ -97,15 +97,14 @@ class Knowledge:
 
     def ola_fare(self, origin_lat, origin_lng, destination_lat, destination_lng):
 
-        r = requests.get(f'https://devapi.olacabs.com/v1/products?pickup_lat={origin_lat}&pickup_lng={origin_lng}&drop_lat={destination_lat}&drop_lng={destination_lng}&service_type=p2p')
+        r = requests.get('https://devapi.olacabs.com/v1/products?pickup_lat={}&pickup_lng={}&drop_lat={}&drop_lng={}&service_type=p2p'.format(origin_lat,origin_lng, destination_lat,  destination_lng))
         data = json.loads(r.text)
         print(json.dumps(data, indent=2))
 
 if __name__ == '__main__':
     know_obj = Knowledge('d35c29eecae9b60ada2a0565f75ec5b9')
-    origin_lat, origin_lng = know_obj.lat_lng('airoli plaza b sector 16, airoli, navi mumbai')
-    destination_lat, destination_lng = know_obj.lat_lng('pillai panvel')
-    know_obj.ola_fare(origin_lat, origin_lng, destination_lat, destination_lng)
+    data = know_obj.find_weather()
+    print(data)
 
 
 

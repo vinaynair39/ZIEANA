@@ -6,22 +6,25 @@ from watson_developer_cloud import ConversationV1
 
 class Conversation:
 
-    def __init__(self, username):
-        self.username = username
+    def __init__(self):
         self.context = {}
         self.response = None
         self.word = None
-        self.context['user_name'] = self.username
-        self.conversation = ConversationV1(password='GBvL0jyr2BzP', username='d6cafd45-923f-4f68-9bea-65a1167973ff', version='2017-05-26')
+        self.context['user_name'] = ''
+        self.conversation = ConversationV1(password='GBvL0jyr2BzP', username='d6cafd45-923f-4f68-9bea-65a1167973ff', version='2018-02-16')
         self.intent = None
         self.entities = None
         self.value1 = ""
         self.value2 = ""
         self.output = None
 
+    def set_user_name(self, username):
+        self.context['user_name'] = username
+
     def convo(self, text=None):
 
         user_input = text
+
         self.response = self.conversation.message(
             workspace_id='e380de5b-7f5b-4287-beb4-3843f449de30',
             input={
@@ -30,7 +33,6 @@ class Conversation:
             context=self.context,
 
         )
-        print(self.response)
         # If an intent was detected, print it to the console.
         if self.response['intents']:
             self.intent = self.response['intents'][0]['intent']
@@ -63,39 +65,9 @@ class Conversation:
         self.context = self.response['context']
         return self.intent, self.entities, self.value1, self.value2, self.output
 
-    def convoV2(self, user_name):
-
-        context = {}
-        context['user_name'] = user_name
-        conversation = ConversationV1(password=self.password, username=self.username, version='2017-05-26')
-        while True:
-            user_input = input('>> ')
-            response = conversation.message(
-                workspace_id='e380de5b-7f5b-4287-beb4-3843f449de30',
-                input={
-                    'text': user_input
-                },
-                context=context,
-
-            )
-
-            # If an intent was detected, print it to the console.
-            if response['intents']:
-                print('Detected intent: #' + response['intents'][0]['intent'])
-
-            if response['output']['text']:
-                print(response['output']['text'][0])
-
-            else:
-                return "damn! some error occurred!"
-
-            context = response['context']
-
 if __name__ == '__main__':
-    test = Conversation('vinay')
+    test = Conversation()
     while True:
-        intent, entities, value1, value2, output = test.convo(input())
+        intent, entities, value1, value2, output = test.convo(input("go:"))
         print('1 ' + intent)
-        print('2 ' + entities)
-        print("3 " + value1)
-        print("4 " + value2)
+

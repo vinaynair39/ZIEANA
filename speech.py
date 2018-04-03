@@ -1,5 +1,4 @@
 import os
-import pyaudio
 import requests
 import speech_recognition as sr
 from os.path import join
@@ -12,7 +11,7 @@ from conversation import Conversation
 
 class Speech(object):
 
-    def __init__(self, user, password, launch_phrase="mirror mirror", debugger_enabled=True):
+    def __init__(self, user, password, launch_phrase={}, debugger_enabled=True):
 
         self.user = user
         self.password = password
@@ -30,8 +29,9 @@ class Speech(object):
 
         with m as source:  # open the microphone and start recording, source is the microphone(m's) instance
             r.adjust_for_ambient_noise(source)
-            r.dynamic_energy_threshold = True
-            r.pause_threshold = 0.8  # minimum length of silence that will be considered as the end of phrase
+            # r.dynamic_energy_threshold = True
+            r.energy_threshold = 4000
+            r.pause_threshold = 0.6  # minimum length of silence that will be considered as the end of phrase
             self.__debugger_microphone(enable=True)
             print("I'm listening")
             audio1 = r.listen(source)
@@ -57,13 +57,15 @@ class Speech(object):
         else:
             return speech
 
-    def is_call_to_action(self, recognizer, audio):
+    def is_call_to_action(self, recognizer, audio):   # method used for the launch Phrase recognition
         speech = self.google_speech_recognition(recognizer, audio)
 
-        if speech is not None and self.launch_phrase in speech.lower():
-            return True
+        for key, value in self.launch_phrase.items():
+            if speech is not None and value in speech.lower():
+                return True, key
 
-        return False
+        key = "charming"
+        return False, key
 
     def __debugger_microphone(self, enable=True):
         if self.debugger_enabled:
@@ -98,5 +100,6 @@ class Speech(object):
 
 
 if __name__ == '__main__':
-    speech_obj = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX')
+    speech_obj = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX', launch_phrase={'vinay': 'banana apple smoothie', 'chanan': 'speaker geek'})
     conversation_obj = Conversation('vinay')
+    data, value = speech_obj.is_call_to_action()

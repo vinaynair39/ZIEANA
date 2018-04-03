@@ -83,8 +83,6 @@ class Movie:
     def movie(self, search_query):
         r = requests.get(f"http://www.omdbapi.com/?apikey={self.key}&t={search_query}")
         data = json.loads(r.text)
-        rating1_name = None
-        rating1_value = None
         try:
             title = data['Title']
             cast = data['Actors']
@@ -92,6 +90,8 @@ class Movie:
             plot = data['Plot']
             released = data['Released']
             imdbrating = data['imdbRating']
+            rating1_name = None
+            rating1_value = None
         except Exception:
             pass
         try:
@@ -114,8 +114,4 @@ if __name__ == "__main__":
     ob = Movie()
     speech = Speech('a40fb4ee-2f84-47ab-acce-c2828b277b08', '1jQFSMbVBjiX')
     data = ob.plot(input("movie name:"))
-    info = data['data']
-    print(info)
-    poster = data['poster']
-    body = {'url': poster}
-    requests.post("http://localhost:8080/image", data=json.dumps(body))
+    print(data)

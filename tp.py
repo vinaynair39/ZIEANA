@@ -9,7 +9,7 @@ class Twilio:
 
     def send_sms(self, to, message):
         self.client.api.account.messages.create(
-            to=f'+{to}',
+            to='+{0}'.format(to),
             from_="+17865202738",
             body=message)
 
@@ -18,11 +18,12 @@ class Twilio:
         'dad': "917977155639",
         'Pranav': "917506105179",
         'Vinay': "917715001084",
+        'Aditya': "919833937475"
     }
 
     def place_Call(self, to):
         calls = self.client.calls.create(
-            to=f'{to}',
+            to='{0}'.format(to),
             from_="+17865202738",
             url="http://demo.twilio.com/docs/voice.xml"
 

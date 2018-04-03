@@ -8,7 +8,6 @@ class Holidays:
 
         self.january = {
             '26 january': 'Republic day',
-            '27 january': "nigga day"
         }
 
         self.february = {
@@ -18,7 +17,13 @@ class Holidays:
 
         self.march = {
             '2 march': 'holi',
-            '25 march': 'ram navami'
+            '25 march': 'ram navami',
+            '29 march': 'Mahavir Jayanti',
+            '30 march': 'Good Friday'
+        }
+        self.april = {
+            '14 april' 'Ambedkar Jayanti',
+
         }
 
     def find_next(self, month=None):
@@ -33,7 +38,7 @@ class Holidays:
             holiday = self.march
         for i, j in holiday.items():
             num = 0
-            full_date = 1 #time.strftime('%d').lstrip('0')
+            full_date = time.strftime('%d').lstrip('0')
             date = i.split(" ")
             if int(date[num]) > int(full_date):
                 data += [i, j]
@@ -52,5 +57,6 @@ if __name__ == '__main__':
     data = d.find_next()
     count = len(data)
     print(count)
+    print(data)
 
 
