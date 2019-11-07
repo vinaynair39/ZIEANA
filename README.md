@@ -4,9 +4,7 @@
 
 
 
-**ZIEANA** is a Web App consisting of a backend which is powered by python, node and express. 
-For the front end, we use **MagicMirror2** by MichMich.
-The real power of ZIEANA is achieved by using various open source as well as paid APIs present over the internet.
+**ZIEANA** is an AI assistant invented in order to make human life more easy, fun and awesome. You can consider ZIEANA as your friend or your personal assistant to whom you can tell, order or ask something and in return it provides us with a response
 
 ZIEANA is capable of perfroming various functions such as :-
 1.	Vocal interaction.
