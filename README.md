@@ -1,5 +1,8 @@
 # ZIEANA
-##### AI Smart Mirror based on MagicMirror2
+#### AI Smart Mirror based on MagicMirror2
+
+
+
 
 **ZIEANA** is a Web App consisting of a backend which is powered by python, node and express. 
 For the front end, we use **MagicMirror2** by MichMich.
